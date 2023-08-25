@@ -1,8 +1,9 @@
 import Express  from "express";
 const route=Express.Router()
-import {logInUser, signUpUser} from '../controller/User.js'
+import { signUpUser} from '../controller/User.js'
 
 
-route.post('/signup',signUpUser).post('/login',logInUser)
+route.post('/signup',signUpUser)
+// .post('/login',logInUser)
 
 export default route

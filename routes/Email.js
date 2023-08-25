@@ -1,7 +1,7 @@
 import express from 'express'
 const router=express.Router()
-import GenShortUrl from '../controller/Url.js'
-router.post('/',GenShortUrl)
+import {sendEmail} from '../controller/Email.js'
+router.post('/',sendEmail)
 // router.get('/',getShortUrl)
 
 

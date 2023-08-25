@@ -1,7 +1,11 @@
 import nodemailer from 'nodemailer'
 import { getAllUserEmails } from './User.js';
  
-export const Email=async(req,res)=>{
+export const sendEmail=async(req,res)=>{
+  // const {body}=req.body
+  const {subject}=req.body
+  console.log(subject)
+  try {
     const userEmails =await getAllUserEmails()
     console.log('All user emails:', userEmails);
     const transporter = nodemailer.createTransport({
@@ -16,7 +20,7 @@ export const Email=async(req,res)=>{
   const info = await transporter.sendMail({
     from: '"Abdullah Asad 👻" <abdullah16aug@gmail.com>', // sender address
     to: userEmails.join(','), // list of receivers
-    subject: "Hello ✔", // Subject line
+    subject: `${subject} 😘`, // Subject line
     text: "Hello world?", // plain text body
     html: "<b>Hello world?</b>", // html body
   });
@@ -30,4 +34,7 @@ export const Email=async(req,res)=>{
   //       <https://github.com/forwardemail/preview-email>
   //
 res.status(200).json(info)
+  } catch (error) {
+    res.status(500).json({"message":error.message})
+  }
 }

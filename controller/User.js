@@ -8,24 +8,24 @@ try {
 }
 }
 export const signUpUser=async(req,res)=>{
-    const {email,password}=req.body
+    const {email}=req.body
 try {
-    const user=await User.create({email,password});
+    const user=await User.create({email});
     res.status(200).json(user)
 } catch (error) {
-    res.error(500).json({error:error.message})
+    res.status(500).json({error:error.message})
 }
 }
-export const logInUser=async(req,res)=>{
-    const {email,password}=req.body
-try {
-    const user=await User.findOne({email,password});
-    const userEmail=user.email
-    res.status(200).json({email:userEmail})
-} catch (error) {
-    res.error(500).json({error:error.message})
-}
-}
+// export const logInUser=async(req,res)=>{
+//     const {email,password}=req.body
+// try {
+//     const user=await User.findOne({email,password});
+//     const userEmail=user.email
+//     res.status(200).json({email:userEmail})
+// } catch (error) {
+//     res.error(500).json({error:error.message})
+// }
+// }
 
 export const getAllUserEmails = async () => {
   try {
